@@ -9,6 +9,25 @@ import AdminView from "../AdminView/AdminView";
 
 function App() {
 
+  //GET feedback
+  const fetchFeedback = () => {
+    axios.get('/admin')
+      .then(response => {
+        dispatch({
+          type: 'GET_FEEDBACK',
+          payload: response.data
+        })
+      console.log(response.data);
+      })
+      .catch((error) => {
+        console.log('ERROR in GET /admin :', error);
+      }) 
+  }
+
+  useEffect(() => {
+    fetchFeedback();
+  }, []);
+
   return (
     <Router>
       <div className="App">
