@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 
@@ -38,8 +39,22 @@ function FeedbackForm() {
     }
 
     // POST data to the DB
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
         console.log('in handleSubmit');
+
+        event.preventDefault();
+
+        axios.post('/form', {feeling, understanding, support, comments})
+            .then((response) => {
+                console.log(response)
+                dispatch({
+                    type: 'ADD_FEEDBACK',
+                    payload: {feeling, understanding, support, comments}
+                })
+            })
+            .catch((error) => {
+                console.log('Error in POST /form', error);
+            })
     }
 
   return (
