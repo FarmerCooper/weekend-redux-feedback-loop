@@ -44,17 +44,21 @@ function FeedbackForm() {
 
         event.preventDefault();
 
-        axios.post('/form', {feeling, understanding, support, comments})
+        axios.post('/form', feedback)
             .then((response) => {
                 console.log(response)
                 dispatch({
                     type: 'ADD_FEEDBACK',
-                    payload: {feeling, understanding, support, comments}
+                    payload: feedback,
                 })
             })
             .catch((error) => {
                 console.log('Error in POST /form', error);
             })
+
+            // CLEAR Input fields
+            setFeedback({feeling: '', understanding: '', support: '', comments: ''});
+
     }
 
   return (
@@ -63,24 +67,28 @@ function FeedbackForm() {
         <input
           placeholder=""
           onChange={handleFeelingInput}
+          value={feedback.feeling}
         />
       </label>
       <label>
         <input
           placeholder=""
           onChange={handleUnderInput}
+          value={feedback.understanding}
         />
       </label>
       <label>
         <input
           placeholder=""
           onChange={handleSupportInput}
+          value={feedback.support}
         />
       </label>
       <label>
         <input
           placeholder=""
           onChange={handleCommentsInput}
+          value={feedback.comments}
         />
       </label>
       <button type="submit">NEXT</button>
