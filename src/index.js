@@ -14,7 +14,7 @@ import logger from "redux-logger";
 const feedbackList = (state = [], action) => {
     switch(action.type) {
         case 'GET_FEEDBACK':
-            return [...state, action.payload];
+            return action.payload;
         default:
             return state;
     }
