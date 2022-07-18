@@ -9,7 +9,9 @@ import AdminView from "../AdminView/AdminView";
 
 function App() {
 
-  //GET feedback
+  const dispatch = useDispatch();
+
+  // GET feedback
   const fetchFeedback = () => {
     axios.get('/admin')
       .then(response => {
@@ -24,6 +26,7 @@ function App() {
       }) 
   }
 
+  // Side requests
   useEffect(() => {
     fetchFeedback();
   }, []);

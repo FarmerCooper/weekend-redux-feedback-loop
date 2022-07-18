@@ -38,6 +38,9 @@ if (process.env.DATABASE_URL) {
     };
 }
 
+// this creates the pool that will be shared by all other modules
+const pool = new pg.Pool(config);
+
 // the pool will log when it connects to the database
 pool.on('connect', () => {
     console.log('PostgreSQL connected');
