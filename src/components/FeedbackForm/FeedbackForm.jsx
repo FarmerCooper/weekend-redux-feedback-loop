@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { HashRouter as Router, Route, useHistory } from "react-router-dom";
 
+import ReviewPage from "../ReviewPage/ReviewPage";
+
 function FeedbackForm() {
   let [feedback, setFeedback] = useState({
     feeling: "",
@@ -11,14 +13,13 @@ function FeedbackForm() {
     comments: "",
   });
 
-  let buttonOne = document.getElementsByClassName('feeling')
-
   const dispatch = useDispatch();
   const history = useHistory();
 
   // These will change a specific input
   // While keeping the rest of the state the same
   const handleFeelingInput = (event) => {
+    
     setFeedback({
       ...feedback,
       feeling: event.target.value,
@@ -51,16 +52,62 @@ function FeedbackForm() {
   };
 
   // These functions will send users to the next page
+  // Prevent users from entering an invalid input
   const handleNextTwo = (event) => {
-    history.push('/2')
+    if (feedback.feeling == 1 
+      || feedback.feeling == 2 
+      || feedback.feeling == 3 
+      || feedback.feeling == 4 
+      || feedback.feeling == 5) {
+      history.push('/2')
+    } else {
+      return alert('invalid input')
+    }
   }
   const handleNextThree = (event) => {
-    history.push('/3')
+    if (feedback.feeling == 1 
+      || feedback.feeling == 2 
+      || feedback.feeling == 3 
+      || feedback.feeling == 4 
+      || feedback.feeling == 5) {
+      history.push('/3')
+    } else {
+      return alert('invalid input')
+    }
   }
   const handleNextFour = (event) => {
-    history.push('/4')
+    if (feedback.feeling == 1 
+      || feedback.feeling == 2 
+      || feedback.feeling == 3 
+      || feedback.feeling == 4 
+      || feedback.feeling == 5) {
+      history.push('/4')
+    } else {
+      return alert('invalid input')
+    }
+  }
+  const handleNextFive = (event) => {
+    if (feedback.feeling == 1 
+      || feedback.feeling == 2 
+      || feedback.feeling == 3 
+      || feedback.feeling == 4 
+      || feedback.feeling == 5) {
+      history.push('/5')
+    } else {
+      return alert('invalid input')
+    }
   }
 
+  // Take the user back a page
+  const takeBackToThree = () => {
+    history.push('/3')
+  }
+  const takeBackToTwo = () => {
+    history.push('/2')
+  }
+  const takeBackToOne = () => {
+    history.push('/')
+  }
 
   // POST data to the DB
   const handleSubmit = (event) => {
@@ -84,8 +131,8 @@ function FeedbackForm() {
     // CLEAR Input fields
     setFeedback({ feeling: "", understanding: "", support: "", comments: "" });
 
-    // Send user to the review page
-    history.push('/5')
+    // Send user back to starting page
+    history.push('/')
   };
 
   return (
@@ -102,6 +149,7 @@ function FeedbackForm() {
           <button onClick={handleNextTwo} type="button">Next</button>
         </Route>
         <Route path="/2" exact>
+          <button onClick={takeBackToOne} type="button">Back</button>
           <label>
             <input
               placeholder=""
@@ -112,6 +160,7 @@ function FeedbackForm() {
           <button onClick={handleNextThree} type="button">Next</button>
         </Route>
         <Route path="/3" exact>
+        <button onClick={takeBackToTwo} type="button">Back</button>
           <label>
             <input
               placeholder=""
@@ -122,6 +171,7 @@ function FeedbackForm() {
           <button onClick={handleNextFour} type="button">Next</button>
         </Route>
         <Route path="/4" exact>
+        <button onClick={takeBackToThree} type="button">Back</button>
           <label>
             <input
               placeholder=""
@@ -129,7 +179,12 @@ function FeedbackForm() {
               value={feedback.comments}
             />
           </label>
-          <button type="submit">NEXT</button>
+          <button onClick={handleNextFive} type="button">Next</button>
+        </Route>
+        <Route path="/5" exact>
+          <ReviewPage 
+          feedback = {feedback}
+          />
         </Route>
       </form>
     </Router>

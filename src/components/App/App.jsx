@@ -7,7 +7,6 @@ import { HashRouter as Router, Route } from "react-router-dom";
 // components
 import AdminView from "../AdminView/AdminView";
 import FeedbackForm from "../FeedbackForm/FeedbackForm";
-import ReviewPage from "../ReviewPage/ReviewPage";
 
 function App() {
 
@@ -43,12 +42,7 @@ function App() {
         <Route path="/admin" exact>
           <AdminView />
         </Route>
-        <Route>
-          <FeedbackForm />
-        </Route>
-        <Route path="/5" exact>
-          <ReviewPage />
-        </Route>
+        <FeedbackForm />
       </div>
     </Router>
   );
