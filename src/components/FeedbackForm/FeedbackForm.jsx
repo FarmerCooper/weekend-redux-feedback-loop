@@ -98,6 +98,16 @@ function FeedbackForm() {
     }
   }
 
+  // Take the user back a page
+  const takeBackToThree = () => {
+    history.push('/3')
+  }
+  const takeBackToTwo = () => {
+    history.push('/2')
+  }
+  const takeBackToOne = () => {
+    history.push('/')
+  }
 
   // POST data to the DB
   const handleSubmit = (event) => {
@@ -139,6 +149,7 @@ function FeedbackForm() {
           <button onClick={handleNextTwo} type="button">Next</button>
         </Route>
         <Route path="/2" exact>
+          <button onClick={takeBackToOne} type="button">Back</button>
           <label>
             <input
               placeholder=""
@@ -149,6 +160,7 @@ function FeedbackForm() {
           <button onClick={handleNextThree} type="button">Next</button>
         </Route>
         <Route path="/3" exact>
+        <button onClick={takeBackToTwo} type="button">Back</button>
           <label>
             <input
               placeholder=""
@@ -159,6 +171,7 @@ function FeedbackForm() {
           <button onClick={handleNextFour} type="button">Next</button>
         </Route>
         <Route path="/4" exact>
+        <button onClick={takeBackToThree} type="button">Back</button>
           <label>
             <input
               placeholder=""
