@@ -89,6 +89,8 @@ function FeedbackForm() {
     // CLEAR Input fields
     setFeedback({ feeling: "", understanding: "", support: "", comments: "" });
 
+    // Send user back to starting page
+    history.push('/')
   };
 
   return (
