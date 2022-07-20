@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { HashRouter as Router, Route, useHistory } from "react-router-dom";
 
+import ReviewPage from "../ReviewPage/ReviewPage";
+
 function FeedbackForm() {
   let [feedback, setFeedback] = useState({
     feeling: "",
@@ -60,6 +62,9 @@ function FeedbackForm() {
   const handleNextFour = (event) => {
     history.push('/4')
   }
+  const handleNextFive = (event) => {
+    history.push('/5')
+  }
 
 
   // POST data to the DB
@@ -84,8 +89,6 @@ function FeedbackForm() {
     // CLEAR Input fields
     setFeedback({ feeling: "", understanding: "", support: "", comments: "" });
 
-    // Send user to the review page
-    history.push('/5')
   };
 
   return (
@@ -129,7 +132,12 @@ function FeedbackForm() {
               value={feedback.comments}
             />
           </label>
-          <button type="submit">NEXT</button>
+          <button onClick={handleNextFive} type="button">Next</button>
+        </Route>
+        <Route path="/5" exact>
+          <ReviewPage 
+          feedback = {feedback}
+          />
         </Route>
       </form>
     </Router>

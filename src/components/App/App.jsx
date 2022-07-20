@@ -46,9 +46,6 @@ function App() {
         <Route>
           <FeedbackForm />
         </Route>
-        <Route path="/5" exact>
-          <ReviewPage />
-        </Route>
       </div>
     </Router>
   );
