@@ -13,14 +13,13 @@ function FeedbackForm() {
     comments: "",
   });
 
-  let buttonOne = document.getElementsByClassName('feeling')
-
   const dispatch = useDispatch();
   const history = useHistory();
 
   // These will change a specific input
   // While keeping the rest of the state the same
   const handleFeelingInput = (event) => {
+    
     setFeedback({
       ...feedback,
       feeling: event.target.value,
@@ -53,17 +52,50 @@ function FeedbackForm() {
   };
 
   // These functions will send users to the next page
+  // Prevent users from entering an invalid input
   const handleNextTwo = (event) => {
-    history.push('/2')
+    if (feedback.feeling == 1 
+      || feedback.feeling == 2 
+      || feedback.feeling == 3 
+      || feedback.feeling == 4 
+      || feedback.feeling == 5) {
+      history.push('/2')
+    } else {
+      return alert('invalid input')
+    }
   }
   const handleNextThree = (event) => {
-    history.push('/3')
+    if (feedback.feeling == 1 
+      || feedback.feeling == 2 
+      || feedback.feeling == 3 
+      || feedback.feeling == 4 
+      || feedback.feeling == 5) {
+      history.push('/3')
+    } else {
+      return alert('invalid input')
+    }
   }
   const handleNextFour = (event) => {
-    history.push('/4')
+    if (feedback.feeling == 1 
+      || feedback.feeling == 2 
+      || feedback.feeling == 3 
+      || feedback.feeling == 4 
+      || feedback.feeling == 5) {
+      history.push('/4')
+    } else {
+      return alert('invalid input')
+    }
   }
   const handleNextFive = (event) => {
-    history.push('/5')
+    if (feedback.feeling == 1 
+      || feedback.feeling == 2 
+      || feedback.feeling == 3 
+      || feedback.feeling == 4 
+      || feedback.feeling == 5) {
+      history.push('/5')
+    } else {
+      return alert('invalid input')
+    }
   }
 
 
