@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { HashRouter as Router, Route, useHistory } from "react-router-dom";
 
 import ReviewPage from "../ReviewPage/ReviewPage";
+import '../App/App.css'
 
 function FeedbackForm() {
   let [feedback, setFeedback] = useState({
@@ -19,7 +20,6 @@ function FeedbackForm() {
   // These will change a specific input
   // While keeping the rest of the state the same
   const handleFeelingInput = (event) => {
-    
     setFeedback({
       ...feedback,
       feeling: event.target.value,
@@ -65,37 +65,29 @@ function FeedbackForm() {
     }
   }
   const handleNextThree = (event) => {
-    if (feedback.feeling == 1 
-      || feedback.feeling == 2 
-      || feedback.feeling == 3 
-      || feedback.feeling == 4 
-      || feedback.feeling == 5) {
+    if (feedback.understanding == 1 
+      || feedback.understanding == 2 
+      || feedback.understanding == 3 
+      || feedback.understanding == 4 
+      || feedback.understanding == 5) {
       history.push('/3')
     } else {
       return alert('invalid input')
     }
   }
   const handleNextFour = (event) => {
-    if (feedback.feeling == 1 
-      || feedback.feeling == 2 
-      || feedback.feeling == 3 
-      || feedback.feeling == 4 
-      || feedback.feeling == 5) {
+    if (feedback.support == 1 
+      || feedback.support == 2 
+      || feedback.support == 3 
+      || feedback.support == 4 
+      || feedback.support == 5) {
       history.push('/4')
     } else {
       return alert('invalid input')
     }
   }
   const handleNextFive = (event) => {
-    if (feedback.feeling == 1 
-      || feedback.feeling == 2 
-      || feedback.feeling == 3 
-      || feedback.feeling == 4 
-      || feedback.feeling == 5) {
       history.push('/5')
-    } else {
-      return alert('invalid input')
-    }
   }
 
   // Take the user back a page
@@ -139,6 +131,7 @@ function FeedbackForm() {
     <Router>
       <form onSubmit={handleSubmit}>
         <Route path="/" exact>
+          <div>From a scale of 1-5, 5 being great, how do you feel?</div>
           <label>
             <input
               placeholder=""
@@ -149,6 +142,7 @@ function FeedbackForm() {
           <button onClick={handleNextTwo} type="button">Next</button>
         </Route>
         <Route path="/2" exact>
+          <div>From a scale of 1-5, what is your comprehension level?</div>
           <button onClick={takeBackToOne} type="button">Back</button>
           <label>
             <input
@@ -160,6 +154,7 @@ function FeedbackForm() {
           <button onClick={handleNextThree} type="button">Next</button>
         </Route>
         <Route path="/3" exact>
+        <div>From a scale of 1-5, how supported do you feel?</div>
         <button onClick={takeBackToTwo} type="button">Back</button>
           <label>
             <input
@@ -171,6 +166,7 @@ function FeedbackForm() {
           <button onClick={handleNextFour} type="button">Next</button>
         </Route>
         <Route path="/4" exact>
+        <div>Do you have any comments for us?</div>
         <button onClick={takeBackToThree} type="button">Back</button>
           <label>
             <input
